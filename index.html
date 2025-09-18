@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Different HTML Parts — Example</title>
+  <style>
+    /* Simple styling for clarity */
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif; margin: 24px; line-height: 1.5; }
+    header { margin-bottom: 16px; }
+    nav { display:flex; gap:8px; margin-bottom:12px; }
+    button.tab { padding:8px 12px; border-radius:8px; border:1px solid #ccc; background:#f7f7f7; cursor:pointer; }
+    button.tab.active { background: #e0f0ff; border-color:#80bfff; }
+    section.content { border:1px solid #eee; padding:16px; border-radius:8px; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .hidden { display:none; }
+    .card { padding:12px; border-radius:8px; background:#fafafa; margin-bottom:12px; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #ddd; padding:8px; text-align:left; }
+    footer { margin-top:16px; font-size:0.9rem; color:#555; }
+    input, textarea { padding:8px; width:100%; box-sizing:border-box; margin-top:8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Different HTML Parts — Demo</h1>
+    <p>Simple page showing different HTML elements and a small interactive tab switcher.</p>
+  </header>
+
+  <!-- Tabs to switch between different examples -->
+  <nav aria-label="Examples">
+    <button class="tab active" data-target="text">Text & Lists</button>
+    <button class="tab" data-target="image">Image & Caption</button>
+    <button class="tab" data-target="table">Table</button>
+    <button class="tab" data-target="form">Form</button>
+    <button class="tab" data-target="js">JS Interaction</button>
+  </nav>
+
+  <main>
+    <!-- Text & Lists -->
+    <section id="text" class="content">
+      <div class="card">
+        <h2>Headings & Paragraphs</h2>
+        <p>This is a simple paragraph. Headings (h1...h6) give structure to the page.</p>
+      </div>
+
+      <div class="card">
+        <h3>Ordered & Unordered Lists</h3>
+        <ul>
+          <li>Apples</li>
+          <li>Bananas</li>
+          <li>Cherries</li>
+        </ul>
+
+        <ol>
+          <li>First step</li>
+          <li>Second step</li>
+          <li>Third step</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>Definition (simple)</h3>
+        <dl>
+          <dt>HTML</dt>
+          <dd>HyperText Markup Language — the standard language for web pages.</dd>
+          <dt>CSS</dt>
+          <dd>Cascading Style Sheets — styles for web pages.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Image -->
+    <section id="image" class="content hidden">
+      <div class="card">
+        <h2>Image with caption</h2>
+        <!-- Use an online image if you have internet; otherwise replace src with local file path -->
+        <figure>
+          <img src="https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?w=800&q=80" alt="Sample landscape" style="max-width:100%; border-radius:8px;">
+          <figcaption>Sample landscape photo (source: Unsplash).</figcaption>
+        </figure>
+      </div>
+
+      <div class="card">
+        <h3>Responsive image note</h3>
+        <p>The image scales to the container width because of <code>max-width:100%</code>.</p>
+      </div>
+    </section>
+
+    <!-- Table -->
+    <section id="table" class="content hidden">
+      <div class="card">
+        <h2>Simple Table</h2>
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Role</th><th>Score</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Malli</td><td>Designer</td><td>85</td></tr>
+            <tr><td>Ravi</td><td>Developer</td><td>92</td></tr>
+            <tr><td>Sita</td><td>Manager</td><td>78</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3>Accessibility tip</h3>
+        <p>Use <code>&lt;thead&gt;</code> and <code>&lt;scope&gt;</code> if table is complex to help screen readers.</p>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section id="form" class="content hidden">
+      <div class="card">
+        <h2>Contact Form (demo)</h2>
+        <form id="contactForm" onsubmit="return handleForm(event);">
+          <label>
+            Your name
+            <input type="text" id="name" required placeholder="Enter your name">
+          </label>
+          <br><br>
+          <label>
+            Message
+            <textarea id="message" rows="4" required placeholder="Type a short message"></textarea>
+          </label>
+          <br><br>
+          <label>
+            Choose an option
+            <select id="choice">
+              <option>Say hi</option>
+              <option>Ask question</option>
+              <option>Give feedback</option>
+            </select>
+          </label>
+          <br><br>
+          <button type="submit">Send</button>
+          <button type="reset" style="margin-left:8px">Reset</button>
+        </form>
+
+        <div id="formFeedback" style="margin-top:12px; color:green;"></div>
+      </div>
+    </section>
+
+    <!-- JS Interaction -->
+    <section id="js" class="content hidden">
+      <div class="card">
+        <h2>Small JavaScript Interaction</h2>
+        <p>Click the button to get a random fun fact:</p>
+        <button id="factBtn">Get Fun Fact</button>
+        <p id="factOutput" style="margin-top:12px; font-weight:600;"></p>
+      </div>
+
+      <div class="card">
+        <h3>Why JS?</h3>
+        <p>JavaScript makes pages interactive — forms validation, changing content, animations, and API calls.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Tip: Edit this file to try different HTML tags. Save and refresh the browser to see changes.</p>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('button.tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('button.tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const target = btn.dataset.target;
+        document.querySelectorAll('main section.content').forEach(sec => {
+          if (sec.id === target) sec.classList.remove('hidden');
+          else sec.classList.add('hidden');
+        });
+      });
+    });
+
+    // Form handler (simple)
+    function handleForm(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const choice = document.getElementById('choice').value;
+      const out = document.getElementById('formFeedback');
+      out.textContent = `Thanks ${name}! You chose "${choice}". We got your message: "${msg.substring(0,60)}${msg.length>60?'...':''}"`;
+      return false;
+    }
+
+    // Fun fact button
+    const facts = [
+      "Honey never spoils — edible after thousands of years!",
+      "Octopuses have three hearts.",
+      "Bananas are berries; strawberries aren't.",
+      "A day on Venus is longer than a year on Venus.",
+      "Humans share ~60% of their DNA with bananas."
+    ];
+    document.getElementById('factBtn').addEventListener('click', () => {
+      const f = facts[Math.floor(Math.random() * facts.length)];
+      document.getElementById('factOutput').textContent = f;
+    });
+  </script>
+</body>
+</html>
